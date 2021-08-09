@@ -1,7 +1,9 @@
 package model
 
-import "io/ioutil"
-import "encoding/json"
+import (
+	"encoding/json"
+	"io/ioutil"
+)
 
 func LoadLegionData() LegionData {
 	dat, err := ioutil.ReadFile("legion-data.json")

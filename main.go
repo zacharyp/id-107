@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"id107/bot"
 	"id107/model"
 )
 
@@ -10,9 +11,11 @@ func main() {
 
 	var legionData = model.LoadLegionData()
 
-	var legionStuff = fmt.Sprintf( "legion units=%d upgrades=%d", len(legionData.Units), len(legionData.Upgrades))
+	var legionStuff = fmt.Sprintf("legion units=%d upgrades=%d", len(legionData.Units), len(legionData.Upgrades))
 
 	fmt.Println("legion unit size: " + legionStuff)
 
 	fmt.Println("luke:", legionData.Units[0])
+
+	bot.PrintBot()
 }
