@@ -1,9 +1,9 @@
 package bot
 
 import (
+	"flag"
 	"fmt"
 	dis "github.com/bwmarrin/discordgo"
-	"flag"
 	"log"
 )
 
