@@ -33,7 +33,7 @@ client.on("interactionCreate", async interaction => {
   }
 });
 
-let legionhqREG = /(legionhq.thefifthtrooper.com\/list\/)(rebels|empire|republic|separatists)\/([a-zA-Z0-9,]+)/;
+let legionhqREG = /(legionhq.thefifthtrooper.com\/list\/)(rebels|empire|republic|separatists)\/([a-zA-Z0-9,_]+)/;
 
 client.on("messageCreate", async (message: Message) => {
   let content = message.content;
@@ -55,8 +55,6 @@ client.on("messageCreate", async (message: Message) => {
       if (channel != undefined) {
         message.reply("legionhq URI path: " + matched[3])
       }
-
-      // client.
     }
   }
 });
