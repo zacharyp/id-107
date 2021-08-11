@@ -2180,6 +2180,11 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+sw-legion-data@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/sw-legion-data/-/sw-legion-data-3.0.0.tgz#08ec865de2c6a204106b487ca774215b6639ed49"
+  integrity sha512-G8wioBYXzylvh2y5ZSsS21Se2uTdWB9wPycIncXIl7amAklyhLoEiea86v7or1DpgLFP7kcjfk+wyXmvwqBK2Q==
+
 table@^6.0.9:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/table/-/table-6.7.1.tgz#ee05592b7143831a8c94f3cee6aae4c1ccef33e2"
