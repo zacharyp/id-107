@@ -1,0 +1,47 @@
+{
+  "name": "id-107",
+  "version": "0.1.0",
+  "description": "Star Wars: Legion discord knowledge bot",
+  "homepage": "https://github.com/zacharyp/id107",
+  "bugs": {
+    "url": "https://github.com/zacharyp/id107/issues"
+  },
+  "author": "Zachary Pitts (https://github.com/zacharyp)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacharyp/id107.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix",
+    "prebuild": "rimraf ./build",
+    "prestart": "npm run build",
+    "prestart:dev": "npm run build",
+    "pretty": "npx prettier --write 'src/**/*.ts'",
+    "start": "node build/index.js",
+    "start:dev": "nodemon build/index.js"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "eslint": "^7.4.0",
+    "nodemon": "^2.0.4",
+    "prettier": "2.3.2",
+    "shx": "^0.3.3",
+    "ts-loader": "^9.2.4",
+    "ts-node": "^10.1.0",
+    "webpack": "^5.47.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.20",
+    "discord.js": "^13.0.1",
+    "dotenv": "^8.2.0",
+    "rimraf": "^3.0.2",
+    "typescript": "4.3.5"
+  }
+}
