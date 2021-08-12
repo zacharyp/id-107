@@ -234,6 +234,11 @@
     "@types/mime" "^1"
     "@types/node" "*"
 
+"@types/uuid@^8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.1.tgz#1a32969cf8f0364b3d8c8af9cc3555b7805df14f"
+  integrity sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==
+
 "@types/ws@^7.4.7":
   version "7.4.7"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.7.tgz#f7c390a36f7a0679aa69de2d501319f4f8d9b702"
@@ -2180,10 +2185,10 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
-sw-legion-data@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/sw-legion-data/-/sw-legion-data-3.0.0.tgz#08ec865de2c6a204106b487ca774215b6639ed49"
-  integrity sha512-G8wioBYXzylvh2y5ZSsS21Se2uTdWB9wPycIncXIl7amAklyhLoEiea86v7or1DpgLFP7kcjfk+wyXmvwqBK2Q==
+sw-legion-data@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/sw-legion-data/-/sw-legion-data-4.2.0.tgz#10d1c9d1b15afc47f72a8e1c39e96fa414bc2fdc"
+  integrity sha512-7weDRKTNMRfIyizCFeXgng5GmNlW8FuQiNB2jrT04ntLCE8jvrrOzexVO6h7t/bb6vA1bm7FZnnYYU2H+1+SXg==
 
 table@^6.0.9:
   version "6.7.1"
@@ -2382,6 +2387,11 @@ url-parse-lax@^3.0.0:
   integrity sha1-FrXK/Afb42dsGxmZF3gj1lA6yww=
   dependencies:
     prepend-http "^2.0.0"
+
+uuid@8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3, v8-compile-cache@^2.2.0:
   version "2.3.0"

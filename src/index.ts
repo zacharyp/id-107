@@ -1,11 +1,7 @@
 import { Channel, Client, Intents, Message } from "discord.js";
 import { DISCORD_TOKEN } from "./config/secrets";
 
-// const PORT = process.env.PORT || 5000;
-
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-// Discord Events: https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-channelCreate
 
 client.on("interactionCreate", interaction => {
   console.log(interaction);
@@ -13,15 +9,11 @@ client.on("interactionCreate", interaction => {
 
 client.once("ready", () => {
   console.log("id-107 has started");
-  // client.application.commands = new ApplicationCommandManager();
-
 });
-// client.on("message", (message: Message) => { commandHandler.handleMessage(message); });
 
 client.on("error", e => {
   console.error("Discord client error!", e);
 });
-
 
 client.on("interactionCreate", async interaction => {
   if (!interaction.isCommand()) return;
@@ -43,6 +35,7 @@ client.on("messageCreate", async (message: Message) => {
   // https://legionhq.thefifthtrooper.com/list/empire/1asdx00ik,2hgfu0000,2ft0,2bbem0000,1bceljb0de0,1ayej000,1ay0ez00,,,,,,
   // https://legionhq.thefifthtrooper.com/list/republic/1na0000,,,,,,
   // https://legionhq.thefifthtrooper.com/list/separatists/1ia0000,,,,,,
+  // https://legionhq.thefifthtrooper.com/list/rebels/1addt0de,,,,,,
   if (legionhqREG.test(content)) {
     let matched = content.match(legionhqREG);
     if (matched != null) {
@@ -58,19 +51,6 @@ client.on("messageCreate", async (message: Message) => {
     }
   }
 });
-
-// client.application.commands = new ApplicationCommandManager();
-
-// client.commands = new Collection();
-//
-// const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-//
-// for (const file of commandFiles) {
-//   const command = require(`./commands/${file}`);
-//   // set a new item in the Collection
-//   // with the key as the command name and the value as the exported module
-//   client.commands.set(command.data.name, command);
-// }
 
 client.login(DISCORD_TOKEN);
 
