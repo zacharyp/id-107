@@ -2185,10 +2185,10 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
-sw-legion-data@^5.0.3:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/sw-legion-data/-/sw-legion-data-5.0.3.tgz#92dd5af75f0f31d77c4b528f75e1703e9786fe03"
-  integrity sha512-Uz8H+AGjSI/4YfzMSH8jKdjUa3xRgG5Gf+Kx8LtDquq6um6gCBPflhR0KxSrH4aHcq/oC4TzslbC/y9m8HHitQ==
+sw-legion-data@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/sw-legion-data/-/sw-legion-data-5.1.0.tgz#38e32a6d91009d33f43ba84a1b256016e87356a4"
+  integrity sha512-XPXnijrqGZIeR2SHYJy2KE+3SSg1a4LcVIMvepW7eHFsuYopob3VxdGbNBoP2I//OB1vmqEkwHn38Quye7OD0w==
 
 table@^6.0.9:
   version "6.7.1"

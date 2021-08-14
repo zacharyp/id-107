@@ -2,6 +2,7 @@ import { Channel, Client, Intents, Message } from "discord.js";
 import { DISCORD_TOKEN } from "./config/secrets";
 import { legionhqToArmy } from "./helpers/legionhq";
 import { exportAsText } from "./helpers/import_export";
+import { findKeyword } from "./helpers/keywords_check";
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -28,6 +29,7 @@ client.on("interactionCreate", async interaction => {
 });
 
 let legionhqREG = /(legionhq.thefifthtrooper.com\/list\/)(rebels|empire|republic|separatists)\/([a-zA-Z0-9,_]+)/;
+let keywordREG = /^(#lkeyword) (\w+)/;
 
 client.on("messageCreate", async (message: Message) => {
   let content = message.content;
@@ -47,6 +49,17 @@ client.on("messageCreate", async (message: Message) => {
           let text = exportAsText(army);
           message.reply(text)
         }
+      }
+    }
+  } else if (keywordREG.test(content)) {
+    let matched = content.match(keywordREG)
+    if (matched != null) {
+      // console.log(matched[0])
+      // console.log(matched[1])
+      // console.log(matched[2])
+      let foundKeyword = findKeyword(matched[2])
+      if (foundKeyword) {
+        message.reply(foundKeyword)
       }
     }
   }
