@@ -1,27 +1,76 @@
-// import { allUnits } from "sw-legion-data/lib/units/index";
-import { ArmyLDF, UnitLDF } from "sw-legion-data/lib/types/ldf";
+import { allUnits } from "sw-legion-data/lib/units";
+import { allUpgrades } from "sw-legion-data/lib/upgrades";
+import { ArmyLDF, UnitLDF, UpgradesLDF } from "sw-legion-data/lib/types/ldf";
 import { loadArmy, pointsForUnit } from "./unit";
-import { Army } from "sw-legion-data/lib/types";
+import { Army, Upgrade, Unit, SlotKey } from "sw-legion-data/lib/types";
+import { keyFromSlot } from "./convert";
 
 
-const stringToUnit = (s: string): UnitLDF | undefined => {
+/**
+ * parses individual units from url like:
+ *   https://legionhq.thefifthtrooper.com/list/rebels/1abcxnz0,2ahiu000,2ah0000,1ah0eu00,2ajeejbdfda0,2hedf0,cr,cv,cl,cp,ch,bj,Of,Od,Oa,Ob,Da,Db,Dc,Dm,Ca,Cc,Cf,Ce
+ * example of one unit: "1abcxnz0"
+ */
+const stringToUnits = (s: string): UnitLDF[] => {
+  let result: UnitLDF[] = []
 
-  return undefined;
+  let num = parseInt(s.slice(0, 1))
+
+  let unitString = s.slice(1,3)
+
+  // Remove empty upgrade slots, noted by '0'
+  let upgradesString = s.slice(3, s.length - 1).replace("0", "");
+
+  // split upgrades by 2 characters each
+  let upgradeLDFs = upgradesString.match(/.{1,2}/g) || []
+
+  // let foo: Unit[] = allUnits;
+  let unit: Unit | undefined = allUnits.find(u => u.ldf == unitString)
+  if (unit) {
+    let unitLdf = <UnitLDF>{
+        ldf: unit.ldf,
+        rank: unit.rank,
+        points: unit.points
+      }
+
+    const parsedUpgrades: { [key in SlotKey]?: string[] } = {};
+
+    upgradeLDFs.forEach(ldf => {
+      let slotKey: SlotKey = 'armament' // default
+      let foundUpgrade = allUpgrades.find(u => u.ldf === ldf);
+      if (foundUpgrade) {
+        slotKey = keyFromSlot(foundUpgrade.slot);
+      }
+      if (!parsedUpgrades[slotKey]) {
+        parsedUpgrades[slotKey] = [];
+      }
+
+      // @ts-ignore
+      parsedUpgrades[slotKey].push(ldf);
+    });
+
+    unitLdf.upgrades = parsedUpgrades;
+
+    for (var i=0; i<num; i++) {
+      result.push(unitLdf)
+    }
+  }
+  return result;
 }
 
-export const legionhqToArmyLDF = (faction: string, legionhq: string): Army | undefined => {
+export const legionhqToArmy = (faction: string, legionhq: string): Army | undefined => {
   const uS: UnitLDF[] = [];
 
   let strings = legionhq.split(",");
-  if (strings.length < 7) {
+  let unitStrings = strings.filter(s => s.length > 2)
+  // let commandStrings = strings.filter(s => s.length == 2)
+  if (unitStrings.length < 0) {
     return undefined;
   } else {
-    // Remove command cards
-    let units = strings.slice(0, strings.length - 6)
-    units.forEach(u => {
-      let ldf = stringToUnit(u)
-      if (ldf) {
-        uS.push(ldf)
+    unitStrings.forEach(u => {
+      let ldfs = stringToUnits(u)
+      if (ldfs) {
+        ldfs.forEach(ldf => uS.push(ldf))
       }
     })
   }
