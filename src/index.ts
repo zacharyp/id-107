@@ -33,7 +33,6 @@ let keywordREG = /^(#lkeyword) (\w+)/;
 
 client.on("messageCreate", async (message: Message) => {
   let content = message.content;
-  // console.log("message: " + content);
   if (legionhqREG.test(content)) {
     let matched = content.match(legionhqREG);
     if (matched != null) {

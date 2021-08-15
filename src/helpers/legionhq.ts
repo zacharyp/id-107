@@ -19,7 +19,9 @@ const stringToUnits = (s: string): UnitLDF[] => {
   let unitString = s.slice(1,3)
 
   // Remove empty upgrade slots, noted by '0'
-  let upgradesString = s.slice(3, s.length - 1).replace("0", "");
+  let upgradesString = s.slice(3, s.length).replace(/0/g, "");
+
+  console.log(upgradesString);
 
   // split upgrades by 2 characters each
   let upgradeLDFs = upgradesString.match(/.{1,2}/g) || []
