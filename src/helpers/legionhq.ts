@@ -9,6 +9,7 @@ import { keyFromSlot } from "./convert";
 /**
  * parses individual units from url like:
  *   https://legionhq.thefifthtrooper.com/list/rebels/1abcxnz0,2ahiu000,2ah0000,1ah0eu00,2ajeejbdfda0,2hedf0,cr,cv,cl,cp,ch,bj,Of,Od,Oa,Ob,Da,Db,Dc,Dm,Ca,Cc,Cf,Ce
+ *   https://legionhq.thefifthtrooper.com/list/republic/1nadtdv0di,1nscw00,1kwnzli00,1jhdp,2gy0000,1gyhphm00,1gbipkrknhz,jm,nf,ng,mi,jz,mv,Oc,Og,Oa,Ob,Dm,Dk,Da,De,Ca,Cg,Cd,Ch
  * example of one unit: "1abcxnz0"
  */
 const stringToUnits = (s: string): UnitLDF[] => {
@@ -21,7 +22,7 @@ const stringToUnits = (s: string): UnitLDF[] => {
   // Remove empty upgrade slots, noted by '0'
   let upgradesString = s.slice(3, s.length).replace(/0/g, "");
 
-  console.log(upgradesString);
+  // console.log("s: " + s + ` unitString: ${unitString} upgradesString: ${upgradesString}`);
 
   // split upgrades by 2 characters each
   let upgradeLDFs = upgradesString.match(/.{1,2}/g) || []
