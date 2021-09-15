@@ -2193,10 +2193,10 @@
   dependencies:
     "has-flag" "^4.0.0"
 
-"sw-legion-data@^5.4.0":
-  "integrity" "sha512-y8vI96ukhPcmGbGLza3uouoDONXSxDrWHXO/E0KqtajQvnyivuyTsWfjk/V399kzYwZRBnDqFylRctaLlrAMyw=="
-  "resolved" "https://registry.npmjs.org/sw-legion-data/-/sw-legion-data-5.4.0.tgz"
-  "version" "5.4.0"
+"sw-legion-data@^5.5.0":
+  "integrity" "sha512-IpcwtfmeiAO+9lZHCrhxIJNPJ52Ds4IumtpNH+kiJhEOIrmmxjuRpRxSNT12O5uLjh56+nMlZ2LtI0eOSZ4+yg=="
+  "resolved" "https://registry.npmjs.org/sw-legion-data/-/sw-legion-data-5.5.0.tgz"
+  "version" "5.5.0"
 
 "table@^6.0.9":
   "integrity" "sha512-ZGum47Yi6KOOFDE8m223td53ath2enHcYLgOCjGr5ngu8bdIARQk6mN/wRMv4yMRcHnCSnHbCEha4sobQx5yWg=="
