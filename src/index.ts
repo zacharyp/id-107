@@ -3,6 +3,7 @@ import { DISCORD_TOKEN } from "./config/secrets";
 import { legionhqToArmy } from "./helpers/legionhq";
 import { exportAsText } from "./helpers/import_export";
 import { findKeyword } from "./helpers/keywords_check";
+import {ttaToArmy} from "./helpers/tta";
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -31,6 +32,13 @@ client.on("interactionCreate", async interaction => {
 let legionhqREG = /(legionhq.thefifthtrooper.com\/list\/)(rebels|empire|republic|separatists)\/([a-zA-Z0-9,_]+)/;
 let keywordREG = /^(#lkeyword) (\w+)/;
 
+// https://tabletopadmiral.com/listbuilder/Galactic%20Republic/p62uEMue8uEMp29uEMu66uEMuEMp38u01uEMp25uEMuEMuEMuEMp25uEMuEMuEMuEMp25uEMuc2uEMuEMuEMp25uEMuc1uEMuEMc08
+// https://tabletopadmiral.com/listbuilder/Empire/p03uEMuEMuEMc08
+// https://tabletopadmiral.com/listbuilder/Separatist%20Alliance/p5euEMuEMuEMuEMc08
+// https://tabletopadmiral.com/listbuilder/Rebel/p0buEMuEMuEMc08
+let ttaREG = /(tabletopadmiral.com\/listbuilder\/)(Rebel|Empire|Galactic%20Republic|Separatist%20Alliance)\/([a-zA-Z0-9,_]+)/;
+
+
 client.on("messageCreate", async (message: Message) => {
   let content = message.content;
   if (legionhqREG.test(content)) {
@@ -47,6 +55,21 @@ client.on("messageCreate", async (message: Message) => {
         if (army) {
           let text = exportAsText(army);
           message.reply(text)
+        }
+      }
+    }
+  } else if (ttaREG.test(content)) {
+    let matched = content.match(ttaREG);
+    if (matched != null) {
+      let channelId = message.channel.id;
+
+      const channel: Channel | undefined = client.channels.cache.get(channelId);
+      if (channel != undefined) {
+        let army = ttaToArmy(matched[2], matched[3]);
+        if (army) {
+          let text = exportAsText(army);
+          console.log(text)
+          // message.reply(text)
         }
       }
     }
