@@ -30,6 +30,7 @@ export const allSlots: Slot[] = [
   "Ordnance",
   "Personnel",
   "Pilot",
+  "Protocol",
   "Training"
 ];
 
@@ -47,6 +48,7 @@ export const slotKeys: SlotKey[] = [
   "ordnance",
   "personnel",
   "pilot",
+  "protocol",
   "training"
 ];
 
