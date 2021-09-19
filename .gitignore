@@ -46,3 +46,6 @@ build
 # intellij
 .idea
 
+
+# unneeded files
+cards.js

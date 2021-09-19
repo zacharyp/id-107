@@ -10,11 +10,8 @@ import { keyFromSlot } from "./convert";
  * parses individual units from url like:
  *   https://legionhq.thefifthtrooper.com/list/rebels/1abcxnz0,2ahiu000,2ah0000,1ah0eu00,2ajeejbdfda0,2hedf0,cr,cv,cl,cp,ch,bj,Of,Od,Oa,Ob,Da,Db,Dc,Dm,Ca,Cc,Cf,Ce
  *   https://legionhq.thefifthtrooper.com/list/republic/1nadtdv0di,1nscw00,1kwnzli00,1jhdp,2gy0000,1gyhphm00,1gbipkrknhz,jm,nf,ng,mi,jz,mv,Oc,Og,Oa,Ob,Dm,Dk,Da,De,Ca,Cg,Cd,Ch
- *
  *   https://legionhq.thefifthtrooper.com/list/republic/1olnddtpqik,1gwnddtnznc,1fzlgocjbdcdj,1fzlhocdgdcdj,1fzkd0jb00
- *   https://legionhq.thefifthtrooper.com/list/republic/1olnddtpqik,1gwnddtnznc,1fzlgocjbdcdj,1fz0ocdgdcdj,1fzkd0jb00,,,,,,
- *   https://legionhq.thefifthtrooper.com/list/republic/1olnddtpqik,1gwnddtnznc,1fz0ocjbdcdj,1fz0ocdgdcdj,1fzkd0jb00,,,,,,
- *   https://legionhq.thefifthtrooper.com/list/republic/1olnddtpqik,1gwnddtnznc,1fzlgocjbdcdj,1fzlhocdgdcdj,1fzkd0jb00,,,,,,
+ *   https://legionhq.thefifthtrooper.com/list/republic/2gb0krknhz,1nadtndnc0,1jh0+1jj,3gy0000
  *
  * example of one unit: "1abcxnz0"
  */
@@ -25,13 +22,21 @@ const stringToUnits = (s: string): UnitLDF[] => {
 
   let unitString = s.slice(1,3)
 
+  // For when the unit has a companion unit
+  let upgradesSplit = s.slice(3, s.length).split("\+")
+
   // Remove empty upgrade slots, noted by '0'
-  let upgradesString = s.slice(3, s.length).replace(/0/g, "");
+  let upgradesString = upgradesSplit[0].replace(/0/g, "");
 
   // console.log("s: " + s + ` unitString: ${unitString} upgradesString: ${upgradesString}`);
 
   // split upgrades by 2 characters each
   let upgradeLDFs = upgradesString.match(/.{1,2}/g) || []
+
+  if (upgradesSplit.length > 1) {
+    // pushing counterpart unit as upgrade
+    upgradeLDFs.push(upgradesSplit[1].slice(1, 3))
+  }
 
   // let foo: Unit[] = allUnits;
   let unit: Unit | undefined = allUnits.find(u => u.ldf == unitString)
@@ -69,6 +74,8 @@ const stringToUnits = (s: string): UnitLDF[] => {
 
 export const legionhqToArmy = (faction: string, legionhq: string): Army | undefined => {
   const uS: UnitLDF[] = [];
+
+  // console.log(`legionhq string: ${legionhq}`)
 
   let strings = legionhq.split(",");
   let unitStrings = strings.filter(s => s.length > 2)

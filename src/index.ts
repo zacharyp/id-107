@@ -28,7 +28,7 @@ client.on("interactionCreate", async interaction => {
   }
 });
 
-let legionhqREG = /(legionhq.thefifthtrooper.com\/list\/)(rebels|empire|republic|separatists)\/([a-zA-Z0-9,_]+)/;
+let legionhqREG = /(legionhq.thefifthtrooper.com\/list\/)(rebels|empire|republic|separatists)\/([a-zA-Z0-9,_+]+)/;
 let keywordREG = /^(#lkeyword) (\w+)/;
 
 client.on("messageCreate", async (message: Message) => {
